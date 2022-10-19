@@ -1,22 +1,25 @@
 package DebugExercise;
-
+import org.junit.Assert.*;
 /**
  * Exercise to showcase the step over button.
  * Code adapted from https://stackoverflow.com/questions/4895173/bitwise-multiply-and-add-in-java and https://stackoverflow.com/questions/1533131/what-useful-bitwise-operator-code-tricks-should-a-developer-know-about
  */
 public class DebugExercise2 {
     /** Returns the max of a and b. Do not step into this function. */
+
+    /* Wrong Max function
     public static int max(int a, int b) {
         int w = (b - a) >> 31;
-        /* If you're stepping into this function, click the
-           step out button because you're not going to learn anything. */
+
         int z = ~(b - a) >> 31;
 
         int max = b & w | a & z;
         return max;
     }
-
-
+    */
+    public static int max(int a,int b){
+        return a > b?a:b;
+    }
     /** Returns the sum of a and b. Do not step into this function. */
     public static int add(int a, int b) {
         int x = a, y = b;
@@ -54,6 +57,7 @@ public class DebugExercise2 {
     }
 
     /** Returns the sum of all elements in x. */
+    /* wrong array sum
     public static int arraySum(int[] x) {
         int i = 0;
         int sum = 0;
@@ -63,7 +67,14 @@ public class DebugExercise2 {
         }
         return sum;
     }
-
+     */
+    public static int arraySum(int[] x) {
+        int sum = 0;
+        for(int i = 0;i < x.length;i++){
+            sum += x[i];
+        }
+        return sum;
+    }
     /** Returns the sum of the element-wise max of a and b.
      *  For example if a = {2, 0, 10, 14} and b = {-5, 5, 20, 30},
      *  the result should be 57.
