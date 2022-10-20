@@ -1,6 +1,8 @@
 package timingtest;
 import edu.princeton.cs.algs4.Stopwatch;
 
+import java.util.Random;
+
 /**
  * Created by hug.
  */
@@ -22,6 +24,19 @@ public class TimeAList {
     }
 
     public static void timeAListConstruction() {
-        // TODO: YOUR CODE HERE
+        Random rand = new Random();
+        AList<Integer> Ns = new AList<>();
+        for(int i = 2;i <= (1<<16);i *= 2)Ns.addLast(i);
+        AList<Double> times = new AList<>();
+        for(int i = 0;i < Ns.size();i++){
+            AList<Integer>testAlist = new AList<>();
+            Stopwatch sw = new Stopwatch();
+            int n = Ns.get(i);
+            while(n-- > 0){
+                testAlist.addLast(rand.nextInt());
+            }
+            times.addLast(sw.elapsedTime());
+        }
+        printTimingTable(Ns,times,Ns);
     }
 }
