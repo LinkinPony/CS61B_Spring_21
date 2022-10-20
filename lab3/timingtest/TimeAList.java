@@ -26,7 +26,7 @@ public class TimeAList {
     public static void timeAListConstruction() {
         Random rand = new Random();
         AList<Integer> Ns = new AList<>();
-        for(int i = 2;i <= (1<<16);i *= 2)Ns.addLast(i);
+        for(int i = 1000;i <= (1<<16);i *= 2)Ns.addLast(i);
         AList<Double> times = new AList<>();
         for(int i = 0;i < Ns.size();i++){
             AList<Integer>testAlist = new AList<>();
