@@ -6,6 +6,7 @@ package gh2;
 
 import deque.ArrayDeque;
 import deque.Deque;
+import deque.LinkedListDeque;
 import edu.princeton.cs.algs4.StdAudio;
 
 //Note: This file will not compile until you complete the Deque implementations
@@ -22,7 +23,7 @@ public class GuitarString {
     private Deque<Double> buffer;
 
     public GuitarString(double frequency) {
-        buffer = new ArrayDeque<Double>();
+        buffer = new LinkedListDeque<Double>();
         int size = (int) (Math.round(SR / frequency));
         for (int i = 0; i < size; i++) buffer.addLast(0.0);
     }

@@ -9,7 +9,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
      * expand array's size expandFactor times.
      */
     private final double expandFactor = 2;
-    private final double shrinkFactor = 0.5;
+    private final double shrinkFactor = 0.35;
     /**
      * shrink array's size when array.length/size is not greater than shrinkLimit.
      */
