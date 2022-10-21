@@ -135,19 +135,19 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
     public Iterator<T> iterator() {
         return new LLDequeIterator(sentinel.next);
     }
+
     @Override
     public boolean equals(Object o) {
         if (o == this) return true;
         else if (!(o instanceof Deque)) {
             return false;
-        }
-        else {
+        } else {
             boolean ok = true;
             Deque tar = (Deque) o;
-            if(tar.size() != this.size)ok = false;
-            else{
-                for(int i = 0;i < tar.size();i++){
-                    if(!tar.get(i).equals(this.get(i)))return false;
+            if (tar.size() != this.size) ok = false;
+            else {
+                for (int i = 0; i < tar.size(); i++) {
+                    if (!tar.get(i).equals(this.get(i))) return false;
                 }
             }
             //TODO: Seems this can't pass autograder (or -Xlint?). But method above is extremely slow.

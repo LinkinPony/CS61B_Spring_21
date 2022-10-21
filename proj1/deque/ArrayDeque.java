@@ -51,7 +51,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
      */
     private void resize(int capactiy) {
         assert (capactiy >= size);
-        T [] newArray = (T[]) new Object[capactiy];
+        T[] newArray = (T[]) new Object[capactiy];
         //reuse space
         if (front > end) {
             System.arraycopy(array, front, newArray, 0, array.length - front);
@@ -84,7 +84,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         if (size == array.length) {
             expand();
         }
-        if(size > 0)front--;
+        if (size > 0) front--;
         size++;
         if (front < 0) front = array.length - 1;
         array[front] = item;
@@ -95,7 +95,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         if (size == array.length) {
             expand();
         }
-        if(size > 0)end++;
+        if (size > 0) end++;
         size++;
         if (end == array.length) end = 0;
         array[end] = item;
@@ -113,18 +113,18 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
             System.out.print(array[idx]);
             System.out.print(" ");
             idx++;
-            if(idx == array.length)idx = 0;
+            if (idx == array.length) idx = 0;
         }
         System.out.println(array[end]);
     }
 
     @Override
     public T removeFirst() {
-        if(size == 0)return null;
+        if (size == 0) return null;
         size--;
         T res = array[front];
         array[front] = null;
-        if(size > 0)front++;
+        if (size > 0) front++;
         if (front == array.length) front = 0;
         if (size > 0 && (float) array.length / size < shrinkLimit) shrink();
         return res;
@@ -132,11 +132,11 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
 
     @Override
     public T removeLast() {
-        if(size == 0)return null;
+        if (size == 0) return null;
         size--;
         T res = array[end];
         array[end] = null;
-        if(size > 0)end--;
+        if (size > 0) end--;
         if (end < 0) end = array.length - 1;
         if (size > 0 && (float) array.length / size < shrinkLimit) shrink();
         return res;
@@ -158,14 +158,13 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         if (o == this) return true;
         else if (!(o instanceof Deque)) {
             return false;
-        }
-        else {
+        } else {
             boolean ok = true;
             Deque tar = (Deque) o;
-            if(tar.size() != this.size)ok = false;
-            else{
-                for(int i = 0;i < tar.size();i++){
-                    if(!tar.get(i).equals(this.get(i)))return false;
+            if (tar.size() != this.size) ok = false;
+            else {
+                for (int i = 0; i < tar.size(); i++) {
+                    if (!tar.get(i).equals(this.get(i))) return false;
                 }
             }
             return ok;
