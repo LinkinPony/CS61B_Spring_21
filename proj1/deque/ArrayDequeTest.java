@@ -34,7 +34,7 @@ public class ArrayDequeTest {
     public void randomAddRemoveTest() {
         java.util.ArrayDeque<Integer> standard = new java.util.ArrayDeque<>();
         ArrayDeque<Integer> test = new ArrayDeque<>();
-        int testCase = 2000;
+        int testCase = 1000000;
         for (int i = 0; i < testCase; i++) {
             int opt = Rand(4);
             if(standard.size() == 0 || test.size() == 0)opt %= 2;

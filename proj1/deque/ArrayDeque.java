@@ -54,13 +54,10 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         T [] newArray = (T[]) new Object[capactiy];
         //reuse space
         if (front > end) {
-//            System.arraycopy(array, front, newArray, 0, array.length - front);
-//            System.arraycopy(array, 0, newArray, array.length - front + 1, end + 1);
-            for(int i = front;i < array.length;i++)newArray[i - front] = array[i];
-            for(int i = 0;i <= end;i++)newArray[array.length - front + i] = array[i];
+            System.arraycopy(array, front, newArray, 0, array.length - front);
+            System.arraycopy(array, 0, newArray, array.length - front, end + 1);
         } else {
-            for(int i = front;i <= end;i++)newArray[i - front] = array[i];
-//            System.arraycopy(array, front, newArray, 0, size);
+            System.arraycopy(array, front, newArray, 0, size);
         }
         front = 0;
         end = size - 1;
@@ -79,6 +76,10 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     }
 
     @Override
+    /*
+     * There's something tricky when you deal with a zero-size deque.
+     * Or try to use sentinel in array.
+     */
     public void addFirst(T item) {
         if (size == array.length) {
             expand();
