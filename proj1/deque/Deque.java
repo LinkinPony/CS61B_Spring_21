@@ -2,7 +2,7 @@ package deque;
 
 import java.util.Iterator;
 
-interface Deque<T> {
+public interface Deque<T> {
     /**
      * Adds an item of type T to the front of the deque. Ensure that item is never null.
      */
