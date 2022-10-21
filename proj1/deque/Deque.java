@@ -26,7 +26,8 @@ public interface Deque<T> {
     int size();
 
     /**
-     * Prints the items in the deque from first to last, separated by a space. Once all the items have been printed, print out a new line.
+     * Prints the items in the deque from first to last, separated by a space.
+     * Once all the items have been printed, print out a new line.
      */
     void printDeque();
 
@@ -41,7 +42,8 @@ public interface Deque<T> {
     T removeLast();
 
     /**
-     * Gets the item at the given index, where 0 is the front, 1 is the next item, and so forth. If no such item exists, returns null. Must not alter the deque!
+     * Gets the item at the given index, where 0 is the front, 1 is the next item, and so forth.
+     * If no such item exists, returns null. Must not alter the deque!
      */
     T get(int index);
 

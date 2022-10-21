@@ -9,7 +9,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
      * expand array's size expandFactor times.
      */
     private final double expandFactor = 2;
-    private final double shrinkFactor = 0.35;
+    private final double shrinkFactor = 0.5;
     /**
      * shrink array's size when array.length/size is not greater than shrinkLimit.
      */
@@ -25,23 +25,27 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     private int size = 0;
 
     private class ArrayDequeIterator implements Iterator<T> {
-        int L, R;
+        int L, R, size;
 
-        ArrayDequeIterator(int front, int end) {
+        ArrayDequeIterator(int front, int end, int sz) {
             L = front;
             R = end;
+            size = sz;
         }
 
         @Override
         public boolean hasNext() {
-            return L != ((R + 1) % array.length);
+            return size != 0;
         }
 
         @Override
         public T next() {
             int resL = L;
             L++;
-            if (L == array.length) L = 0;
+            if (L == array.length) {
+                L = 0;
+            }
+            size--;
             return array[resL];
         }
     }
@@ -79,14 +83,17 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     /*
      * There's something tricky when you deal with a zero-size deque.
      * Or try to use sentinel in array.
-     */
-    public void addFirst(T item) {
+     */ public void addFirst(T item) {
         if (size == array.length) {
             expand();
         }
-        if (size > 0) front--;
+        if (size > 0) {
+            front--;
+        }
         size++;
-        if (front < 0) front = array.length - 1;
+        if (front < 0) {
+            front = array.length - 1;
+        }
         array[front] = item;
     }
 
@@ -95,9 +102,13 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         if (size == array.length) {
             expand();
         }
-        if (size > 0) end++;
+        if (size > 0) {
+            end++;
+        }
         size++;
-        if (end == array.length) end = 0;
+        if (end == array.length) {
+            end = 0;
+        }
         array[end] = item;
     }
 
@@ -113,20 +124,30 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
             System.out.print(array[idx]);
             System.out.print(" ");
             idx++;
-            if (idx == array.length) idx = 0;
+            if (idx == array.length) {
+                idx = 0;
+            }
         }
         System.out.println(array[end]);
     }
 
     @Override
     public T removeFirst() {
-        if (size == 0) return null;
+        if (size == 0) {
+            return null;
+        }
         size--;
         T res = array[front];
         array[front] = null;
-        if (size > 0) front++;
-        if (front == array.length) front = 0;
-        if (size > 0 && (float) array.length / size < shrinkLimit) shrink();
+        if (size > 0) {
+            front++;
+        }
+        if (front == array.length) {
+            front = 0;
+        }
+        if (size > 0 && (float) size / array.length < shrinkLimit) {
+            shrink();
+        }
         return res;
     }
 
@@ -136,9 +157,15 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         size--;
         T res = array[end];
         array[end] = null;
-        if (size > 0) end--;
-        if (end < 0) end = array.length - 1;
-        if (size > 0 && (float) array.length / size < shrinkLimit) shrink();
+        if (size > 0) {
+            end--;
+        }
+        if (end < 0) {
+            end = array.length - 1;
+        }
+        if (size > 0 && (float) size / array.length < shrinkLimit) {
+            shrink();
+        }
         return res;
     }
 
@@ -150,21 +177,25 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return new ArrayDequeIterator(front, end);
+        return new ArrayDequeIterator(front, end, size());
     }
 
     @Override
     public boolean equals(Object o) {
-        if (o == this) return true;
-        else if (!(o instanceof Deque)) {
+        if (o == this) {
+            return true;
+        } else if (!(o instanceof Deque)) {
             return false;
         } else {
             boolean ok = true;
             Deque tar = (Deque) o;
-            if (tar.size() != this.size) ok = false;
-            else {
+            if (tar.size() != this.size) {
+                ok = false;
+            } else {
                 for (int i = 0; i < tar.size(); i++) {
-                    if (!tar.get(i).equals(this.get(i))) return false;
+                    if (!tar.get(i).equals(this.get(i))) {
+                        return false;
+                    }
                 }
             }
             return ok;

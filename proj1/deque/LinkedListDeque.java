@@ -77,7 +77,9 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
         Node cur = sentinel.next;
         boolean space = false;
         while (cur != sentinel) {
-            if (space) System.out.print(" ");
+            if (space) {
+                System.out.print(" ");
+            }
             space = true;
             System.out.print(cur.value);
             cur = cur.next;
@@ -88,8 +90,11 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
     @Override
     /* TODO: ensure there is no memory leak */
     public T removeFirst() {
-        if (size > 0) size--;
-        else return null;
+        if (size > 0) {
+            size--;
+        } else {
+            return null;
+        }
         T value = sentinel.next.value;
         Node delNode = sentinel.next;
         sentinel.next = delNode.next;
@@ -99,8 +104,11 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
 
     @Override
     public T removeLast() {
-        if (size > 0) size--;
-        else return null;
+        if (size > 0) {
+            size--;
+        } else {
+            return null;
+        }
         T value = sentinel.prev.value;
         Node delNode = sentinel.prev;
         sentinel.prev = delNode.prev;
@@ -110,24 +118,30 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
 
     @Override
     public T get(int index) {
-        if (index < 0) return null;
+        if (index < 0) {
+            return null;
+        }
         int count = 0;
         Node cur = sentinel.next;
         while (count < index && cur != sentinel) {
             count++;
             cur = cur.next;
         }
-        if (count != index || cur == sentinel) return null;
-        else return cur.value;
+        if (count != index || cur == sentinel) {
+            return null;
+        } else {
+            return cur.value;
+        }
     }
 
     private T getRecursive(int index, Node cur) {
-        if (index == 0) return cur.value;
-        return getRecursive(index - 1, cur.next);
+        return index == 0 ? cur.value : getRecursive(index - 1, cur.next);
     }
 
     public T getRecursive(int index) {
-        if (index < 0) return null;
+        if (index < 0) {
+            return null;
+        }
         return getRecursive(index, sentinel.next);
     }
 
@@ -138,20 +152,25 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
 
     @Override
     public boolean equals(Object o) {
-        if (o == this) return true;
-        else if (!(o instanceof Deque)) {
+        if (o == this) {
+            return true;
+        } else if (!(o instanceof Deque)) {
             return false;
         } else {
             boolean ok = true;
             Deque tar = (Deque) o;
-            if (tar.size() != this.size) ok = false;
-            else {
+            if (tar.size() != this.size) {
+                ok = false;
+            } else {
                 for (int i = 0; i < tar.size(); i++) {
-                    if (!tar.get(i).equals(this.get(i))) return false;
+                    if (!tar.get(i).equals(this.get(i))) {
+                        return false;
+                    }
                 }
             }
-            //TODO: Seems this can't pass autograder (or -Xlint?). But method above is extremely slow.
-            //      Find a good way to solve it.
+            //  Seems this can't pass autograder (or -Xlint?).
+            //  But method above is extremely slow.
+            //  Find a good way to solve it.
 //            if (tar.size() != this.size()) ok = false;
 //            else {
 //                Iterator<T> itThis = this.iterator();
