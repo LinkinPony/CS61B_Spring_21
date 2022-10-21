@@ -130,7 +130,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         array[front] = null;
         if(size > 0)front++;
         if (front == array.length) front = 0;
-//        if (size > 0 && (float) array.length / size < shrinkLimit) shrink();
+        if (size > 0 && (float) array.length / size < shrinkLimit) shrink();
         return res;
     }
 
@@ -142,7 +142,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         array[end] = null;
         if(size > 0)end--;
         if (end < 0) end = array.length - 1;
-//        if (size > 0 && (float) array.length / size < shrinkLimit) shrink();
+        if (size > 0 && (float) array.length / size < shrinkLimit) shrink();
         return res;
     }
 
