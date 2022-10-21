@@ -1,6 +1,5 @@
 package deque;
 
-import java.lang.reflect.ParameterizedType;
 import java.util.*;
 
 public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
@@ -39,7 +38,8 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
      * Circular Sentinel.<br>
      * sentinel.next -> first node.<br>
      * sentinel.prev -> last node.<br>
-     * In any time, sentinel must not be null. And if deque is empty, sentinel is both the first and the last node.
+     * In any time, sentinel must not be null.
+     * And if deque is empty, sentinel is both the first and the last node.
      */
     private final Node sentinel;
     private int size;
@@ -88,7 +88,6 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
     }
 
     @Override
-    /* TODO: ensure there is no memory leak */
     public T removeFirst() {
         if (size > 0) {
             size--;

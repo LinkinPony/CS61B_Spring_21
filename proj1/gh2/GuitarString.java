@@ -12,9 +12,9 @@ public class GuitarString {
      */
     private static final int SR = 44100;      // Sampling Rate
     private static final double DECAY = .996; // energy decay factor
-    private double last;//last dequeued double
+    private double last; //last dequeued double
     /* Buffer for storing sound data. */
-    private Deque<Double> buffer;
+    private final Deque<Double> buffer;
 
     public GuitarString(double frequency) {
         buffer = new LinkedListDeque<Double>();
