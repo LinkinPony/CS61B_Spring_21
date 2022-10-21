@@ -37,7 +37,7 @@ public class ArrayDequeTest {
         int testCase = 1000000;
         for (int i = 0; i < testCase; i++) {
             int opt = Rand(4);
-            if(standard.size() == 0 || test.size() == 0)opt %= 2;
+            if (standard.size() == 0 || test.size() == 0) opt %= 2;
             if (opt == 0) {
                 int v = Rand(1000);
                 standard.addLast(v);
