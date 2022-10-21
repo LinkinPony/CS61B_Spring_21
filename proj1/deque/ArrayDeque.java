@@ -57,7 +57,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
 //            System.arraycopy(array, front, newArray, 0, array.length - front);
 //            System.arraycopy(array, 0, newArray, array.length - front + 1, end + 1);
             for(int i = front;i < array.length;i++)newArray[i - front] = array[i];
-            for(int i = 0;i <= end;i++)newArray[array.length - front + 1 + i] = array[i];
+            for(int i = 0;i <= end;i++)newArray[array.length - front + i] = array[i];
         } else {
             for(int i = front;i <= end;i++)newArray[i - front] = array[i];
 //            System.arraycopy(array, front, newArray, 0, size);
@@ -128,9 +128,9 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         size--;
         T res = array[front];
         array[front] = null;
-        front++;
+        if(size > 0)front++;
         if (front == array.length) front = 0;
-        if ((float) array.length / size < shrinkLimit) shrink();
+//        if (size > 0 && (float) array.length / size < shrinkLimit) shrink();
         return res;
     }
 
@@ -140,9 +140,9 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         size--;
         T res = array[end];
         array[end] = null;
-        end--;
+        if(size > 0)end--;
         if (end < 0) end = array.length - 1;
-        if ((float) array.length / size < shrinkLimit) shrink();
+//        if (size > 0 && (float) array.length / size < shrinkLimit) shrink();
         return res;
     }
 

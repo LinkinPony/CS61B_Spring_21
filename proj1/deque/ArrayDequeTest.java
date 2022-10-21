@@ -1,6 +1,9 @@
 package deque;
 
+import jh61b.junit.In;
 import org.junit.Test;
+
+import java.util.Random;
 
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
@@ -9,8 +12,8 @@ public class ArrayDequeTest {
     @Test
     public void smallRemoveFirstTest() {
         ArrayDeque<Integer> dq = new ArrayDeque<>();
-        int[] input = new int[]{1, 2, 3, 4, 5,1,2,3,4,5};
-        int[] expect = new int[]{1, 2, 3, 4, 5,1,2,3,4,5};
+        int[] input = new int[]{1, 2, 3, 4, 5, 1, 2, 3, 4, 5};
+        int[] expect = new int[]{1, 2, 3, 4, 5, 1, 2, 3, 4, 5};
         for (int x : input) dq.addLast(x);
         int[] result = new int[5];
         for (int i = 0; i <= 4; i++) result[i] = dq.removeFirst();
@@ -19,8 +22,48 @@ public class ArrayDequeTest {
         }
     }
 
+    /**
+     * return random int in range [0,n)
+     */
+    private int Rand(int n) {
+        Random rand = new Random();
+        return Math.abs(rand.nextInt()) % n;
+    }
+
     @Test
-    public void smallRemoveLastTest(){
+    public void randomAddRemoveTest() {
+        java.util.ArrayDeque<Integer> standard = new java.util.ArrayDeque<>();
+        ArrayDeque<Integer> test = new ArrayDeque<>();
+        int testCase = 2000;
+        for (int i = 0; i < testCase; i++) {
+            int opt = Rand(4);
+            if(standard.size() == 0 || test.size() == 0)opt %= 2;
+            if (opt == 0) {
+                int v = Rand(1000);
+                standard.addLast(v);
+                test.addLast(v);
+                assertEquals("addLast | Deque's size not equal", standard.size(), test.size());
+            } else if (opt == 1) {
+                int v = Rand(1000);
+                standard.addFirst(v);
+                test.addFirst(v);
+                assertEquals("addFirst | Deque's size not equal", standard.size(), test.size());
+            } else if (opt == 2) {
+                Integer v1 = standard.removeFirst();
+                Integer v2 = test.removeFirst();
+                int x = 1;
+                assertEquals("removeFirst | values not equal", v1, v2);
+            } else if (opt == 3) {
+                Integer v1 = standard.removeLast();
+                Integer v2 = test.removeLast();
+                int x = 1;
+                assertEquals("removeLast | values not equal", v1, v2);
+            }
+        }
+    }
+
+    @Test
+    public void smallRemoveLastTest() {
         ArrayDeque<Integer> lld1 = new ArrayDeque<Integer>();
         for (int i = 0; i < 10; i++) {
             lld1.addLast(i);
