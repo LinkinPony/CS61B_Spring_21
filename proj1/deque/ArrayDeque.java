@@ -162,15 +162,10 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         else {
             boolean ok = true;
             Deque tar = (Deque) o;
-            if (tar.size() != this.size()) ok = false;
-            else {
-                Iterator<T> itThis = this.iterator();
-                Iterator itTar = tar.iterator();
-                while (itTar.hasNext() && itThis.hasNext()) {
-                    if (!itTar.next().equals(itThis.next())) {
-                        ok = false;
-                        break;
-                    }
+            if(tar.size() != this.size)ok = false;
+            else{
+                for(int i = 0;i < tar.size();i++){
+                    if(!tar.get(i).equals(this.get(i)))return false;
                 }
             }
             return ok;
