@@ -1,28 +1,49 @@
 package deque;
 
 import java.util.Iterator;
-import java.util.Objects;
 
-public interface Deque<T> {
-    public void addFirst(T item);
+interface Deque<T> {
+    /**
+     * Adds an item of type T to the front of the deque. Ensure that item is never null.
+     */
+    void addFirst(T item);
 
-    public void addLast(T item);
+    /**
+     * Adds an item of type T to the back of the deque. Ensure that item is never null.
+     */
+    void addLast(T item);
 
-    public boolean isEmpty();
+    /**
+     * Returns true if deque is empty, false otherwise.
+     */
+    boolean isEmpty();
 
-    public int size();
+    /**
+     * Returns the number of items in the deque.
+     */
+    int size();
 
-    public void printDeque();
+    /**
+     * Prints the items in the deque from first to last, separated by a space. Once all the items have been printed, print out a new line.
+     */
+    void printDeque();
 
-    public T removeFirst();
+    /**
+     * Removes and returns the item at the front of the deque. If no such item exists, returns null.
+     */
+    T removeFirst();
 
-    public T removeLast();
+    /**
+     * Removes and returns the item at the back of the deque. If no such item exists, returns null.
+     */
+    T removeLast();
 
-    public T get(int index);
+    /**
+     * Gets the item at the given index, where 0 is the front, 1 is the next item, and so forth. If no such item exists, returns null. Must not alter the deque!
+     */
+    T get(int index);
 
-    public T getRecursive(int index);
+    Iterator<T> iterator();
 
-    public Iterator<T> iterator();
-
-    public boolean equals(Object o);
+    boolean equals(Object o);
 }
