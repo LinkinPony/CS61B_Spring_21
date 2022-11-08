@@ -3,9 +3,32 @@ package bstmap;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 /** Tests by Brendan Hu, Spring 2015, revised for 2016 by Josh Hug */
 public class TestBSTMap {
-
+    private Random randGene = new Random();
+    private int rand(int n){
+        return Math.abs(randGene.nextInt()) % n;
+    }
+    @Test public void printInOrderTest(){
+        //TODO
+        int n = 6;
+        final int maxn = 20;
+        BSTMap<Integer, Integer> map = new BSTMap<Integer, Integer>();
+        ArrayList<Integer>keys = new ArrayList<>();
+        for(int i = 1;i <= n;i++){
+            int k = rand(maxn),v = rand(maxn);
+            map.put(k,v);
+            keys.add(k);
+        }
+        map.printInOrder();
+        assertEquals(n,map.size());
+        for(int k:keys){
+            assertTrue(map.containsKey(k));
+        }
+    }
   	@Test
     public void sanityGenericsTest() {
     	try {

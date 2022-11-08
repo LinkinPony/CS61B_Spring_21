@@ -74,14 +74,15 @@ public class BSTMap<K extends Comparable<K>,V> implements Map61B<K, V> {
         }
         int comp = key.compareTo(u.key);
         if(comp > 0){
-            return u.right = insert(u.right,key,value);
+            u.right = insert(u.right,key,value);
         }
         else if(comp == 0){
-            return u;
+            u.value = value;
         }
         else {
-            return u.left = insert(u.left,key,value);
+            u.left = insert(u.left,key,value);
         }
+        return u;
     }
     @Override
     public void put(K key, V value) {
@@ -108,6 +109,14 @@ public class BSTMap<K extends Comparable<K>,V> implements Map61B<K, V> {
     public V remove(K key, V value) {
         throw new UnsupportedOperationException();
     }
-
+    private void printInOrder(Node u){
+        if(u == null)return;
+        printInOrder(u.left);
+        System.out.println("{" + u.key + "," + u.value + "}");
+        printInOrder(u.right);
+    }
+    public void printInOrder(){
+        printInOrder(root);
+    }
 
 }
