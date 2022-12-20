@@ -171,21 +171,24 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
     public void put(K key, V value) {
         if(key == null)return;
         int h = hash(key);
+        boolean find = false;
         Iterator<Node> it = buckets[h].iterator();
         while (it.hasNext()) {
-            K curKey = it.next().key;
-            if (curKey.equals(key)) {
-                it.remove();
-                elementCount--;
+            Node u = it.next();
+            if (u.key.equals(key)) {
+                u.value = value;
+                find = true;
                 break;
             }
         }
-        Node u = createNode(key, value);
-        buckets[h].add(u);
-        keys.add(u.key);
-        elementCount++;
-        if(elementCount > size * factor){
-            expand();
+        if(!find){
+            Node u = createNode(key, value);
+            buckets[h].add(u);
+            keys.add(u.key);
+            elementCount++;
+            if(elementCount > size * factor){
+                expand();
+            }
         }
     }
 
