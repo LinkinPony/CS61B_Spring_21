@@ -31,11 +31,11 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
     /* Instance Variables */
     private Collection<Node>[] buckets;
     // You should probably define some more!
-    HashSet<K> keys = new HashSet<>();
-    static int INIT_SIZE = 7;
-    int size = INIT_SIZE;
-    int elementCount = 0;
-    double factor = 0.75;
+    private HashSet<K> keys = new HashSet<>();
+    private static int INIT_SIZE = 7;
+    private int size = INIT_SIZE;
+    private int elementCount = 0;
+    private double factor = 0.75;
 
     /**
      * Constructors
